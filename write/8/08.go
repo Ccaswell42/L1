@@ -33,3 +33,5 @@ func main() {
 	fmt.Println(changeBit(num, count, bit)) // выводим в консоль рещультат наших вычислений
 
 }
+
+// https://metanit.com/go/tutorial/2.7.php
