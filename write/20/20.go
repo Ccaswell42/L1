@@ -3,47 +3,25 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
-func trim(str []rune) []string {
-	var new []rune
-	var arr []string
-
-	for _, val := range str {
-		if val != 32 {
-			new = append(new, val)
-		} else {
-			arr = append(arr, string(new))
-			new = []rune("")
-			continue
-		}
-	}
-	arr = append(arr, string(new))
-	return arr
-}
-
 func revers(str string) string {
-	arr := trim([]rune(str))
-	last := len(arr) - 1
-	var res string
 
-	for first := 0; first < len(arr)/2; first++ {
-		arr[first], arr[last] = arr[last], arr[first]
-		last--
-	}
-	for i, val := range arr {
+	arr := strings.Split(str, " ") // с помощью функцции Split разбиваем строку по пробелу в массив
 
-		if i != 0 {
-			res += " "
-		}
-		res += val
+	var newArr []string
+
+	// в цикле записываем наш массив в новый в обратном порядке
+	for i := len(arr) - 1; i >= 0; i-- {
+		newArr = append(newArr, arr[i])
 	}
-	return res
+	// соедениям наш массив в одну строку через разделитьель "пробел" и возвращаем
+	return strings.Join(newArr, " ")
+
 }
-
 func main() {
-	//fmt.Println([]rune(" "))
-	str := revers(os.Args[1])
-	fmt.Println(str)
+	// строку берем из аргумента коммандной строки
+	fmt.Println(revers(os.Args[1])) // выводим результат в консоль
 
 }
