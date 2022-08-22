@@ -21,7 +21,7 @@ func writer(ctx context.Context, ch chan int) {
 		default:
 			ch <- i
 		}
-		time.Sleep(100 * time.Millisecond) // <- для наглядности
+		time.Sleep(100 * time.Millisecond) //  для наглядности
 		i++
 	}
 
@@ -38,13 +38,13 @@ func main() {
 
 	// создаем канал куда будем писать и откуда читать
 	ch := make(chan int, 1)
-	// запускаем в отдельной горутине наше чтение
+	// запускаем в отдельной горутине нашу запись
 	go writer(ctx, ch)
 	// читаем пока есть что читать, и пока канал не закрыт
 	for val := range ch {
 		fmt.Println(val)
 	}
 	// как только сработает таймаут, запись прекратится, чтение тоже, и мы заврешим работу нашей прогрмамы
-	fmt.Println("bye bye")
+	fmt.Println("Finish")
 
 }
